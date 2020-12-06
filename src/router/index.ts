@@ -43,6 +43,14 @@ const routes: Array<RouteRecordRaw> = [
 			import(/* webpackChunkName: "Game" */ '../views/Game.vue'),
 		children: [
 			{
+				path: 'hangar',
+				name: 'Hangar',
+				component: () =>
+					import(
+						/* webpackChunkName: "Hangar" */ '../views/Game/Hangar.vue'
+					),
+			},
+			{
 				path: 'launch', // NOTE: WILL BE GAME Launch / PRE FLIGHT
 				name: 'Launch',
 				component: () =>
