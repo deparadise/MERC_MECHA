@@ -68,6 +68,14 @@ const routes: Array<RouteRecordRaw> = [
 					},
 				],
 			},
+			{
+				path: 'retro/:sortie_id', // NOTE: WILL BE GAME Launch / PRE FLIGHT
+				name: 'Retro',
+				component: () =>
+					import(
+						/* webpackChunkName: "Sortie_Retro" */ '../views/Game/Retro.vue'
+					),
+			},
 		],
 	},
 ];
