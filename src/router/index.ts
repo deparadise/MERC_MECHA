@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
+import Settings from '../views/Settings.vue';
 import About from '../views/About.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -11,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/settings',
 		name: 'Settings',
-		component: Home,
+		component: Settings,
 	},
 	{
 		path: '/about',
@@ -22,13 +23,15 @@ const routes: Array<RouteRecordRaw> = [
 		path: '/leaderboards',
 		name: 'High Scores',
 		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/About.vue'),
+			import(
+				/* webpackChunkName: "Sortie_Leaderboards" */ '../views/Leaderboards.vue'
+			),
 	},
 	{
 		path: '/store',
 		name: 'store',
 		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/About.vue'),
+			import(/* webpackChunkName: "Store" */ '../views/Store.vue'),
 	},
 	{
 		path: '/game',
@@ -37,19 +40,25 @@ const routes: Array<RouteRecordRaw> = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/About.vue'),
+			import(/* webpackChunkName: "Game" */ '../views/Game.vue'),
 		children: [
 			{
-				path: '/', // NOTE: WILL BE GAME LOBBY / PRE FLIGHT
-				component: Home,
-			},
-			{
-				path: '/:sortie', // NOTE: <<< GAME PLAY
-				component: Home,
-			},
-			{
-				path: '/:sortie/recap',
-				component: Home,
+				path: 'launch', // NOTE: WILL BE GAME Launch / PRE FLIGHT
+				name: 'Launch',
+				component: () =>
+					import(
+						/* webpackChunkName: "Launch" */ '../views/Game/Launch.vue'
+					),
+				children: [
+					{
+						path: ':sortie_id', // NOTE: <<< GAME PLAY
+						name: 'Run Sortie',
+						component: () =>
+							import(
+								/* webpackChunkName: "Sortie" */ '../views/Game/Sortie.vue'
+							),
+					},
+				],
 			},
 		],
 	},
