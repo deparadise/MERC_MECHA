@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
-import Settings from '../views/Settings.vue';
 import About from '../views/About.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -10,28 +9,9 @@ const routes: Array<RouteRecordRaw> = [
 		component: Home,
 	},
 	{
-		path: '/settings',
-		name: 'Settings',
-		component: Settings,
-	},
-	{
 		path: '/about',
 		name: 'About',
 		component: About,
-	},
-	{
-		path: '/leaderboards',
-		name: 'High Scores',
-		component: () =>
-			import(
-				/* webpackChunkName: "Sortie_Leaderboards" */ '../views/Leaderboards.vue'
-			),
-	},
-	{
-		path: '/store',
-		name: 'store',
-		component: () =>
-			import(/* webpackChunkName: "Store" */ '../views/Store.vue'),
 	},
 	{
 		path: '/game',
@@ -42,6 +22,22 @@ const routes: Array<RouteRecordRaw> = [
 		component: () =>
 			import(/* webpackChunkName: "Game" */ '../views/Game.vue'),
 		children: [
+			{
+				path: 'leaderboards',
+				name: 'High Scores',
+				component: () =>
+					import(
+						/* webpackChunkName: "Sortie_Leaderboards" */ '../views/Game/Leaderboards.vue'
+					),
+			},
+			{
+				path: 'settings',
+				name: 'Settings',
+				component: () =>
+					import(
+						/* webpackChunkName: "Settings" */ '../views/Game/Settings.vue'
+					),
+			},
 			{
 				path: 'hangar',
 				name: 'Hangar',
@@ -77,6 +73,12 @@ const routes: Array<RouteRecordRaw> = [
 					),
 			},
 		],
+	},
+	{
+		path: '/store',
+		name: 'Store',
+		component: () =>
+			import(/* webpackChunkName: "Store" */ '../views/Store.vue'),
 	},
 ];
 
