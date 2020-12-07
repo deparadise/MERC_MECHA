@@ -1,7 +1,22 @@
 <template>
 	<div id="nav">
-		<router-link to="/">Home</router-link> |
-		<router-link to="/about">About</router-link>
+		<div id="site-nav">
+			<!-- MAIN -->
+			<router-link to="/">Home</router-link>
+			| <router-link to="/about">About</router-link>
+		</div>
+
+		<div id="game-nav">
+			<!-- GAME -->
+			<!-- - LEADERBOARDS -->
+			<!-- - SETTINGS -->
+			<!-- - LAUNCH -->
+			<!-- - HANGAR -->
+		</div>
+
+		<div id="store-nav">
+			<!-- STORE -->
+		</div>
 	</div>
 	<router-view />
 </template>
