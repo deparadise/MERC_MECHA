@@ -5,7 +5,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+	data() {
+		const d = {
+			mecha: {},
+			loadOut: {},
+		};
+		return d;
+	},
+};
 </script>
 
 <style lang="scss" scoped></style>
